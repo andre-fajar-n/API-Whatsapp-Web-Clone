@@ -31,15 +31,9 @@ def init_database():
     salt = uuid.uuid4().hex
     encoded = ('%s%s' % ("password", salt)).encode('utf-8')
     hash_pass = hashlib.sha512(encoded).hexdigest()
-    # insert user data
-    # client_internal = Clients(client_key="internal", client_secret=hash_pass, status="True", salt=salt)
-    # client_noninternal = Clients(client_key="noninternal", client_secret=hash_pass, status="False", salt=salt)
-    # db.session.add(client_internal)
-    # db.session.add(client_noninternal)
-    # db.session.commit()
     
-    user_internal = Users(phone_number='085735950340',password=hash_pass,salt= salt,status_internal= True)
-    user_noninternal = Users(phone_number='085735950341',password=hash_pass,salt= salt,status_internal= False)
+    user_internal = Users(username='andre', phone_number='085735950340',password=hash_pass,salt= salt,status_internal= True)
+    user_noninternal = Users(username='andre', phone_number='085735950341',password=hash_pass,salt= salt,status_internal= False)
     db.session.add(user_internal)
     db.session.add(user_noninternal)
     db.session.commit()

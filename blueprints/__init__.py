@@ -95,9 +95,13 @@ def after_request(response):
 # Import Blueprint
 from blueprints.token import bp_token
 from blueprints.user.resources import bp_user
+from blueprints.personal_messages.resources import bp_personal_message
+from blueprints.conversation.resources import bp_conversation
 
 # Register Blueprint
 app.register_blueprint(bp_token, url_prefix='/login')
 app.register_blueprint(bp_user, url_prefix='/user')
+app.register_blueprint(bp_personal_message, url_prefix='/personal_message')
+app.register_blueprint(bp_conversation, url_prefix='/conversation')
 
 db.create_all()

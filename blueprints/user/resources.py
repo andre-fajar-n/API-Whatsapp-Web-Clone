@@ -17,6 +17,7 @@ class User(Resource):
 
     def post(self):
         parser = reqparse.RequestParser()
+        parser.add_argument('username', location='json', required=True)
         parser.add_argument('phone_number', location='json', required=True)
         parser.add_argument('password', location='json', required=True)
         parser.add_argument('status_internal', location='json', type=bool, default=True)
@@ -26,7 +27,7 @@ class User(Resource):
         encoded = ('%s%s' % (args['password'], salt)).encode('utf-8')
         hash_pass = hashlib.sha512(encoded).hexdigest()
 
-        user = Users(args['phone_number'], hash_pass, salt, args['status_internal'])
+        user = Users(args['username'], args['phone_number'], hash_pass, salt, args['status_internal'])
         db.session.add(user)
         db.session.commit()
 

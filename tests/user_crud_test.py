@@ -4,6 +4,7 @@ from . import app, client, cache, create_token_internal, create_token_noninterna
 class TestUserCrud():
     def test_post_user(self, client, init_database):
         data = {
+            'username':'andre',
             'phone_number':'085555555555',
             'password':'password'
         }

@@ -24,6 +24,7 @@ class Conversations(db.Model):
         'user1_id':fields.Integer,
         'user2_id':fields.Integer,
         # 'status_deleted':fields.Boolean
+        'created_at':fields.DateTime
     }
     
     def __init__(self, user1_id, user2_id):

@@ -24,6 +24,7 @@ class ConversationResource(Resource):
         
         list_conversation = []
         for conversation in conversations:
+            # mengambil data pesan terakhir
             personal_messages = PersonalMessages.query.filter_by(conversation_id=conversation.id)
             personal_messages = personal_messages.order_by(desc(PersonalMessages.created_at)).first()
             marshal_personal_messages = marshal(personal_messages, PersonalMessages.response_fields)
@@ -46,6 +47,7 @@ class ConversationResource(Resource):
                 
             personal_messages = PersonalMessages.query.filter_by(conversation_id=conversation.id)
             list_message = []
+            # mengambil semua chat
             for personal_message in personal_messages:
                 marshal_personal_message = marshal(personal_message, PersonalMessages.response_fields)
             

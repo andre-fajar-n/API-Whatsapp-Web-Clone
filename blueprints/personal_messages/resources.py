@@ -47,4 +47,17 @@ class PersonalMessageResource(Resource):
         app.logger.debug('DEBUG: success')
         return marshal(personal_message, PersonalMessages.response_fields), 200
     
-api.add_resource(PersonalMessageResource, '')
+    @internal_required
+    def delete(self, id):
+        personal_message = PersonalMessages.query.get(id)
+        if personal_message is None:
+            app.logger.debug("DEBUG: ID not found")
+            return {'status':"NOT_FOUND"}, 404
+        
+        db.session.delete(personal_message)
+        db.session.commit()
+        
+        app.logger.debug("DEBUG: Data Deleted")
+        return {'status':'Success deleted'}, 200
+    
+api.add_resource(PersonalMessageResource, '', '/<id>')

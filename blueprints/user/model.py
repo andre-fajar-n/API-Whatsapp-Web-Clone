@@ -20,7 +20,7 @@ class Users(db.Model):
     # conversation_user1 = relationship('Conversations', backref='users', lazy=True, uselist=False)
     # conversation_user2 = relationship('Conversations', backref='users', lazy=True, uselist=False)
     # personal_message = relationship('PersonalMessages', backref='users', lazy=True, uselist=False)
-    created_at = db.Column(db.DateTime(timezone=True),server_default=func.now())
+    created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
 
     response_fields = {

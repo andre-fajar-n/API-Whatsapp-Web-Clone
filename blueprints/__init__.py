@@ -101,6 +101,7 @@ from blueprints.group_message.resources import bp_message_group
 from blueprints.list_group.resources import bp_list_group
 from blueprints.member_group.resources import bp_member_group
 from blueprints.all_message.resources import bp_all_message
+from blueprints.status.resources import bp_status
 
 # Register Blueprint
 app.register_blueprint(bp_token, url_prefix='/login')
@@ -111,5 +112,6 @@ app.register_blueprint(bp_message_group, url_prefix='/message_group')
 app.register_blueprint(bp_list_group, url_prefix='/list_group')
 app.register_blueprint(bp_member_group, url_prefix='/member_group')
 app.register_blueprint(bp_all_message, url_prefix='/all_message')
+app.register_blueprint(bp_status, url_prefix='/status')
 
 db.create_all()

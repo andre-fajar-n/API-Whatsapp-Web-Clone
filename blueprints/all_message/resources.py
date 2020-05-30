@@ -17,7 +17,6 @@ from blueprints.group_message.model import MessageGroup
 bp_all_message = Blueprint('union', __name__)
 api = Api(bp_all_message)
 
-
 class AllMessageResource(Resource):
     def options(self):
         return {'status': 'ok'}, 200
@@ -29,8 +28,7 @@ class AllMessageResource(Resource):
         list_chat = []
 
         # ambil data personal chat
-        conversations = Conversations.query.filter(or_(Conversations.user1_id.like(
-            claims['id']), Conversations.user2_id.like(claims['id'])))
+        conversations = Conversations.query.filter(or_(Conversations.user1_id.like(claims['id']), Conversations.user2_id.like(claims['id'])))
         for conversation in conversations:
             marshal_conversation = marshal(
                 conversation, Conversations.response_fields)
@@ -51,10 +49,8 @@ class AllMessageResource(Resource):
                 conversation_id=conversation.id)
 
             # mengambil data pesan terakhir
-            last_personal_messages = personal_messages.order_by(
-                desc(PersonalMessages.created_at)).first()
-            marshal_last_personal_messages = marshal(
-                last_personal_messages, PersonalMessages.response_fields)
+            last_personal_messages = personal_messages.order_by(desc(PersonalMessages.created_at)).first()
+            marshal_last_personal_messages = marshal(last_personal_messages, PersonalMessages.response_fields)
             marshal_conversation['last_chat'] = marshal_last_personal_messages
 
             # mengambil semua chat

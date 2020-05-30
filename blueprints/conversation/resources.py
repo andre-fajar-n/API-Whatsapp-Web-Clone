@@ -15,57 +15,6 @@ class ConversationResource(Resource):
     def options(self):
         return {'status':'ok'}, 200
     
-    @internal_required
-    def get(self):
-        claims = get_jwt_claims()
-        
-        # filter tabel conversation dari user yang login
-        conversations = Conversations.query.filter(or_(Conversations.user1_id.like(claims['id']), Conversations.user2_id.like(claims['id'])))
-        
-        list_conversation = []
-        for conversation in conversations:
-            # mengambil data pesan terakhir
-            personal_messages = PersonalMessages.query.filter_by(conversation_id=conversation.id)
-            personal_messages = personal_messages.order_by(desc(PersonalMessages.created_at)).first()
-            marshal_personal_messages = marshal(personal_messages, PersonalMessages.response_fields)
-            
-            marshal_conversation = marshal(conversation, Conversations.response_fields)
-            
-            marshal_conversation['last_chat'] = marshal_personal_messages
-            
-            # memasukkan data lawan chat ke response
-            if marshal_conversation['user1_id'] != claims['id']:
-                user = Users.query.get(marshal_conversation['user1_id'])
-                marshal_user = marshal(user, Users.response_fields)
-                marshal_conversation['data_user'] = marshal_user
-                
-            # memasukkan data lawan chat ke response
-            if marshal_conversation['user2_id'] != claims['id']:
-                user = Users.query.get(marshal_conversation['user2_id'])
-                marshal_user = marshal(user, Users.response_fields)
-                marshal_conversation['data_user'] = marshal_user
-                
-            personal_messages = PersonalMessages.query.filter_by(conversation_id=conversation.id)
-            list_message = []
-            # mengambil semua chat
-            for personal_message in personal_messages:
-                marshal_personal_message = marshal(personal_message, PersonalMessages.response_fields)
-            
-                # memasukkan data lawan chat ke response
-                if marshal_personal_message['user_id'] == marshal_conversation['data_user']['id']:
-                    user = Users.query.get(marshal_conversation['data_user']['id'])
-                    marshal_user = marshal(user, Users.response_fields)
-                    marshal_personal_message['user'] = marshal_user
-                
-                list_message.append(marshal_personal_message)
-                
-            marshal_conversation['all_chat'] = list_message
-                
-            list_conversation.append(marshal_conversation)
-            
-        app.logger.debug('DEBUG: %s', list_conversation)
-        return list_conversation, 200
-    
     def delete(self, id):
         qry = PersonalMessages.query.get(id)
         if qry is None:

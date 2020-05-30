@@ -21,8 +21,8 @@ class MessageGroupResource(Resource):
         claims = get_jwt_claims()
         
         parser = reqparse.RequestParser()
-        parser.add_argument('group_chat_id', location='json', required=True)
-        parser.add_argument('message', location='json')
+        parser.add_argument('group_chat_id', location='args', required=True)
+        parser.add_argument('message', location='args')
         args = parser.parse_args()
         
         # cek grup ada atau tidak
@@ -44,43 +44,5 @@ class MessageGroupResource(Resource):
         
         app.logger.debug('DEBUG: Send a message success')
         return marshal(message_group, MessageGroup.response_fields), 200
-    
-    @internal_required
-    def get(self):
-        claims = get_jwt_claims()
-        
-        # memfilter group yang user sebagai anggotanya
-        group_by_user = MemberGroup.query.filter_by(user_id=claims['id'])
-        
-        # memasukkan list group ke dalam array
-        list_group = []
-        for group in group_by_user:
-            detail_group = ListGroup.query.get(group.group_chat_id)
-            marshal_detail_group = marshal(detail_group, ListGroup.response_fields)
-            
-            # memfilter message berdasarkan group
-            message_group = MessageGroup.query.filter_by(group_chat_id=group.id)
-            
-            # memasukkan pesan terakhir group
-            last_message_group = message_group.order_by(desc(MessageGroup.created_at)).first()
-            marshal_last_message_group = marshal(last_message_group, MessageGroup.response_fields)
-            marshal_detail_group['last_chat'] = marshal_last_message_group
-            
-            # memasukkan tiap message ke detail masing2 group
-            all_message = []
-            for message in message_group:
-                # mendapatkan data user yang mengirim pesan
-                user = Users.query.get(message.user_id)
-                marshal_user = marshal(user, Users.response_fields)
-                
-                marshal_message = marshal(message, MessageGroup.response_fields)
-                marshal_message['user'] = marshal_user
-                all_message.append(marshal_message)
-            marshal_detail_group['all_message'] = all_message
-            
-            list_group.append(marshal_detail_group)
-            
-        app.logger.debug('DEBUG: %s', list_group)
-        return list_group, 200
     
 api.add_resource(MessageGroupResource, '')

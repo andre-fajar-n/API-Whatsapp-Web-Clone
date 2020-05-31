@@ -96,7 +96,6 @@ def after_request(response):
 from blueprints.token import bp_token
 from blueprints.user.resources import bp_user
 from blueprints.personal_messages.resources import bp_personal_message
-from blueprints.conversation.resources import bp_conversation
 from blueprints.group_message.resources import bp_message_group
 from blueprints.list_group.resources import bp_list_group
 from blueprints.member_group.resources import bp_member_group
@@ -107,7 +106,6 @@ from blueprints.status.resources import bp_status
 app.register_blueprint(bp_token, url_prefix='/login')
 app.register_blueprint(bp_user, url_prefix='/user')
 app.register_blueprint(bp_personal_message, url_prefix='/personal_message')
-app.register_blueprint(bp_conversation, url_prefix='/conversation')
 app.register_blueprint(bp_message_group, url_prefix='/message_group')
 app.register_blueprint(bp_list_group, url_prefix='/list_group')
 app.register_blueprint(bp_member_group, url_prefix='/member_group')

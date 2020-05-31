@@ -39,20 +39,13 @@ class User(Resource):
     def get(self):
         claims = get_jwt_claims()
         qry = Users.query.get(claims["id"])
-        if qry is not None:
-            app.logger.debug('DEBUG : %s', qry)
-            return marshal(qry, Users.response_fields), 200
-
-        app.logger.debug('DEBUG : id tidak ada')
-        return {'status': 'NOT_FOUND'}, 404
+        app.logger.debug('DEBUG : %s', qry)
+        return marshal(qry, Users.response_fields), 200
 
     @internal_required
     def patch(self):
         claims = get_jwt_claims()
         user = Users.query.get(claims["id"])
-        if user is None:
-            app.logger.debug('DEBUG : id tidak ada')
-            return {'status': 'NOT_FOUND'}, 404
 
         parser = reqparse.RequestParser()
         parser.add_argument('phone_number', location='json')

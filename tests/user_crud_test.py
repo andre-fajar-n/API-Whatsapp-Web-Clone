@@ -38,19 +38,19 @@ class TestUserCrud():
         res_json = json.loads(res.data)
         assert res.status_code == 200
         
-    def test_delete_id_valid_admin(self, client, init_database):
-        res = client.delete('/user/admin/1',
-                            content_type='application/json')
+    # def test_delete_id_valid_admin(self, client, init_database):
+    #     res = client.delete('/user/admin/1',
+    #                         content_type='application/json')
         
-        res_json = json.loads(res.data)
-        assert res.status_code == 200
+    #     res_json = json.loads(res.data)
+    #     assert res.status_code == 200
         
-    def test_delete_id_invalid_admin(self, client, init_database):
-        res = client.delete('/user/admin/10',
-                            content_type='application/json')
+    # def test_delete_id_invalid_admin(self, client, init_database):
+    #     res = client.delete('/user/admin/10',
+    #                         content_type='application/json')
         
-        res_json = json.loads(res.data)
-        assert res.status_code == 404
+    #     res_json = json.loads(res.data)
+    #     assert res.status_code == 404
         
     def test_get_admin_asc(self, client, init_database):
         data = {

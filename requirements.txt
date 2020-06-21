@@ -10,3 +10,4 @@ requests
 pytest-cov
 werkzeug==0.16.0
 moment
+humanize

@@ -5,8 +5,8 @@ __pycache__/
 migrations/
 *.pyc
 *.cpython-36.pyc
-config.cfg
-*.cfg
+# config.cfg
+# *.cfg
 *.json
 
 # tambah

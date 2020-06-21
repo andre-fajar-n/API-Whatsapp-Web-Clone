@@ -74,4 +74,19 @@ class StatusResource(Resource):
         app.logger.debug('DEBUG: %s', list_user)
         return list_user, 200
     
+class ListStatusResource(Resource):
+    def options(self):
+        return {'status': 'ok'}, 200
+    
+    def get(self, id):
+        list_status = StatusWA.query.filter_by(user_id=id)
+        
+        all_status = []
+        for status in list_status:
+            all_status.append(marshal(status, StatusWA.response_fields))
+            
+        app.logger.debug('DEBUG: %s', all_status)
+        return all_status, 200
+        
 api.add_resource(StatusResource, '')
+api.add_resource(ListStatusResource, '/<id>')

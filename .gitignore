@@ -7,7 +7,7 @@ migrations/
 *.cpython-36.pyc
 # config.cfg
 # *.cfg
-*.json
+# *.json
 
 # tambah
 

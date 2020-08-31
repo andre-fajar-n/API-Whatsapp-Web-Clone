@@ -1,0 +1,461 @@
+{
+	"info": {
+		"_postman_id": "62678dc1-9ef6-4858-a83b-102476fc8609",
+		"name": "wa clone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "token",
+			"item": [
+				{
+					"name": "create token",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{develop}}/login?phone_number=085856023921&password=mama",
+							"host": [
+								"{{develop}}"
+							],
+							"path": [
+								"login"
+							],
+							"query": [
+								{
+									"key": "phone_number",
+									"value": "085856023921"
+								},
+								{
+									"key": "password",
+									"value": "mama"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "add user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"sandro\",\n\t\"phone_number\":\"081238387181\",\n\t\"password\":\"sandro\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{develop}}/user",
+							"host": [
+								"{{develop}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get data user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTA5MjM5OTksIm5iZiI6MTU5MDkyMzk5OSwianRpIjoiNzVjODZjYzItYWU5Ny00MWZiLWFlYzgtYjhhYzg1NTA5ZWIzIiwiZXhwIjoxNTkxMDEwMzk5LCJpZGVudGl0eSI6IjA4NTg1NjAyMzkyMSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyIsInVzZXJfY2xhaW1zIjp7ImlkIjoxLCJwaG9uZV9udW1iZXIiOiIwODU4NTYwMjM5MjEiLCJ1c2VybmFtZSI6Im1hbWEiLCJzdGF0dXNfaW50ZXJuYWwiOnRydWV9fQ.PZ1FpmQYgI1Bkb2zrNIxibGYA05YDndEu2dABf3CyW0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{develop}}/user",
+							"host": [
+								"{{develop}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Personal Message",
+			"item": [
+				{
+					"name": "new message",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTA1NzI2MDgsIm5iZiI6MTU5MDU3MjYwOCwianRpIjoiNGRhYTExZWYtODJlNS00ZDA0LTkzODMtMTQ0NjM5NzEzOTcyIiwiZXhwIjoxNTkwNjU5MDA4LCJpZGVudGl0eSI6IjA4NTczNTk1MDM0MCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyIsInVzZXJfY2xhaW1zIjp7ImlkIjoyLCJwaG9uZV9udW1iZXIiOiIwODU3MzU5NTAzNDAiLCJ1c2VybmFtZSI6ImFuZHJlIiwic3RhdHVzX2ludGVybmFsIjp0cnVlfX0.jmiEYApvCrw6mhUKJ9Rqo9eEEQPC_4srwtApoSBqzkw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{develop}}/personal_message?user2_id=1&message=alhamdulillah baik",
+							"host": [
+								"{{develop}}"
+							],
+							"path": [
+								"personal_message"
+							],
+							"query": [
+								{
+									"key": "user2_id",
+									"value": "1"
+								},
+								{
+									"key": "message",
+									"value": "alhamdulillah baik"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete personal message",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{develop}}/personal_message/100",
+							"host": [
+								"{{develop}}"
+							],
+							"path": [
+								"personal_message",
+								"100"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Group Message",
+			"item": [
+				{
+					"name": "add group",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTA3MzI2OTYsIm5iZiI6MTU5MDczMjY5NiwianRpIjoiMTIxMTc1OWYtZWFiZS00ZmY2LWFiN2UtOWRjMTc2NmViNzBhIiwiZXhwIjoxNTkwODE5MDk2LCJpZGVudGl0eSI6IjA4MTI4OTg3OTk3MiIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyIsInVzZXJfY2xhaW1zIjp7ImlkIjo1LCJwaG9uZV9udW1iZXIiOiIwODEyODk4Nzk5NzIiLCJ1c2VybmFtZSI6ImFpc3lhaCIsInN0YXR1c19pbnRlcm5hbCI6dHJ1ZX19.mvaXzCwuUqHOMqRYlXRdYQYW1I6Zcb78czq7q8bMSdA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"Alta Batch 5\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{develop}}/list_group",
+							"host": [
+								"{{develop}}"
+							],
+							"path": [
+								"list_group"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add member",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTA3MjMyOTYsIm5iZiI6MTU5MDcyMzI5NiwianRpIjoiMmMzZTBmNDYtNmIxYi00N2RiLThiYTEtZGI4NGJmY2Y4MTIzIiwiZXhwIjoxNTkwODA5Njk2LCJpZGVudGl0eSI6IjA4NTczNTk1MDM0MCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyIsInVzZXJfY2xhaW1zIjp7ImlkIjoyLCJwaG9uZV9udW1iZXIiOiIwODU3MzU5NTAzNDAiLCJ1c2VybmFtZSI6ImFuZHJlIiwic3RhdHVzX2ludGVybmFsIjp0cnVlfX0.s0_rHRuM-9Hc_Rm8DjrJJtmgqZfo1dylb6jVq15jjUQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"group_chat_id\":2,\n\t\"user_id\":2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{develop}}/member_group",
+							"host": [
+								"{{develop}}"
+							],
+							"path": [
+								"member_group"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all member",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTA3MzI2OTYsIm5iZiI6MTU5MDczMjY5NiwianRpIjoiMTIxMTc1OWYtZWFiZS00ZmY2LWFiN2UtOWRjMTc2NmViNzBhIiwiZXhwIjoxNTkwODE5MDk2LCJpZGVudGl0eSI6IjA4MTI4OTg3OTk3MiIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyIsInVzZXJfY2xhaW1zIjp7ImlkIjo1LCJwaG9uZV9udW1iZXIiOiIwODEyODk4Nzk5NzIiLCJ1c2VybmFtZSI6ImFpc3lhaCIsInN0YXR1c19pbnRlcm5hbCI6dHJ1ZX19.mvaXzCwuUqHOMqRYlXRdYQYW1I6Zcb78czq7q8bMSdA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"group_chat_id\":2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{develop}}/member_group",
+							"host": [
+								"{{develop}}"
+							],
+							"path": [
+								"member_group"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "send message",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTA3MjMyOTYsIm5iZiI6MTU5MDcyMzI5NiwianRpIjoiMmMzZTBmNDYtNmIxYi00N2RiLThiYTEtZGI4NGJmY2Y4MTIzIiwiZXhwIjoxNTkwODA5Njk2LCJpZGVudGl0eSI6IjA4NTczNTk1MDM0MCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyIsInVzZXJfY2xhaW1zIjp7ImlkIjoyLCJwaG9uZV9udW1iZXIiOiIwODU3MzU5NTAzNDAiLCJ1c2VybmFtZSI6ImFuZHJlIiwic3RhdHVzX2ludGVybmFsIjp0cnVlfX0.s0_rHRuM-9Hc_Rm8DjrJJtmgqZfo1dylb6jVq15jjUQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{develop}}/message_group?group_chat_id&message",
+							"host": [
+								"{{develop}}"
+							],
+							"path": [
+								"message_group"
+							],
+							"query": [
+								{
+									"key": "group_chat_id",
+									"value": null
+								},
+								{
+									"key": "message",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "status",
+			"item": [
+				{
+					"name": "add status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTA4MzIwOTgsIm5iZiI6MTU5MDgzMjA5OCwianRpIjoiM2M4ODkzMjctYzk0Zi00MmZlLTliYmEtNjM4MjMxMzFhOGM4IiwiZXhwIjoxNTkwOTE4NDk4LCJpZGVudGl0eSI6IjA4NTc0NjA1OTg3NyIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyIsInVzZXJfY2xhaW1zIjp7ImlkIjozLCJwaG9uZV9udW1iZXIiOiIwODU3NDYwNTk4NzciLCJ1c2VybmFtZSI6ImF5YWgiLCJzdGF0dXNfaW50ZXJuYWwiOnRydWV9fQ.iZmZEiIDXZl7UWJSO2rmoO4QBTd307qsXO7ubVpkZOw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "2",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "content",
+									"value": "coba ada gambar",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/home/alta6/Pictures/andre.jpg"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{develop}}/status?content=coba status",
+							"host": [
+								"{{develop}}"
+							],
+							"path": [
+								"status"
+							],
+							"query": [
+								{
+									"key": "content",
+									"value": "coba status"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTEwMjM1OTYsIm5iZiI6MTU5MTAyMzU5NiwianRpIjoiMDVjN2I0MDQtYzU0ZS00MzdkLTk0M2MtMGE5YWE3ZTdkMGE5IiwiZXhwIjoxNTkxMTA5OTk2LCJpZGVudGl0eSI6IjA4NTg1NjAyMzkyMSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyIsInVzZXJfY2xhaW1zIjp7ImlkIjoxLCJwaG9uZV9udW1iZXIiOiIwODU4NTYwMjM5MjEiLCJ1c2VybmFtZSI6Im1hbWEiLCJzdGF0dXNfaW50ZXJuYWwiOnRydWV9fQ.lwf0hiRa5XY2uF5rYMfBFJ_PBENY5rI1GD8xd9JU8q0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{develop}}/status",
+							"host": [
+								"{{develop}}"
+							],
+							"path": [
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get status by id user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{develop}}/status/2",
+							"host": [
+								"{{develop}}"
+							],
+							"path": [
+								"status",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "get all message",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTQzNjMzNzcsIm5iZiI6MTU5NDM2MzM3NywianRpIjoiY2I3Mjk0ZDAtMzY2Ni00MmJmLWI3NmItNDdhMTMxYTJiYzcwIiwiZXhwIjoxNTk0NDQ5Nzc3LCJpZGVudGl0eSI6IjA4NTg1NjAyMzkyMSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyIsInVzZXJfY2xhaW1zIjp7ImlkIjoxLCJwaG9uZV9udW1iZXIiOiIwODU4NTYwMjM5MjEiLCJ1c2VybmFtZSI6Im1hbWEiLCJzdGF0dXNfaW50ZXJuYWwiOnRydWV9fQ.BodELZfIDYciFnAyQWp1F0JYdMtgHy7FQwKIfkbfzSA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{develop}}/all_message",
+					"host": [
+						"{{develop}}"
+					],
+					"path": [
+						"all_message"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -13,6 +13,10 @@ from flask_sqlalchemy import SQLAlchemy
 ###############################################################
 app = Flask(__name__)
 
+@app.route("/")
+def hello():
+    return "<h1>Welcome to Whatsapp Web Clone's Backend</h1>", 200
+
 CORS(app, origins="*", allow_headers=[
     "Content-Type", "Authorization", "Access-Control-Allow-Credentials"],
     supports_credentials=True, intercept_exceptions=False)
@@ -38,10 +42,10 @@ elif my_flask == 'Testing':
 else:
     app.config.from_object(config.DevelopmentConfig)
 
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+# db = SQLAlchemy(app)
+# migrate = Migrate(app, db)
 manager = Manager(app)
-manager.add_command('db', MigrateCommand)
+# manager.add_command('db', MigrateCommand)
 
 @app.before_request
 def before_request():
@@ -93,23 +97,23 @@ def after_request(response):
 
 
 # Import Blueprint
-from blueprints.token import bp_token
-from blueprints.user.resources import bp_user
-from blueprints.personal_messages.resources import bp_personal_message
-from blueprints.group_message.resources import bp_message_group
-from blueprints.list_group.resources import bp_list_group
-from blueprints.member_group.resources import bp_member_group
-from blueprints.all_message.resources import bp_all_message
-from blueprints.status.resources import bp_status
+# from blueprints.token import bp_token
+# from blueprints.user.resources import bp_user
+# from blueprints.personal_messages.resources import bp_personal_message
+# from blueprints.group_message.resources import bp_message_group
+# from blueprints.list_group.resources import bp_list_group
+# from blueprints.member_group.resources import bp_member_group
+# from blueprints.all_message.resources import bp_all_message
+# from blueprints.status.resources import bp_status
 
 # Register Blueprint
-app.register_blueprint(bp_token, url_prefix='/login')
-app.register_blueprint(bp_user, url_prefix='/user')
-app.register_blueprint(bp_personal_message, url_prefix='/personal_message')
-app.register_blueprint(bp_message_group, url_prefix='/message_group')
-app.register_blueprint(bp_list_group, url_prefix='/list_group')
-app.register_blueprint(bp_member_group, url_prefix='/member_group')
-app.register_blueprint(bp_all_message, url_prefix='/all_message')
-app.register_blueprint(bp_status, url_prefix='/status')
+# app.register_blueprint(bp_token, url_prefix='/login')
+# app.register_blueprint(bp_user, url_prefix='/user')
+# app.register_blueprint(bp_personal_message, url_prefix='/personal_message')
+# app.register_blueprint(bp_message_group, url_prefix='/message_group')
+# app.register_blueprint(bp_list_group, url_prefix='/list_group')
+# app.register_blueprint(bp_member_group, url_prefix='/member_group')
+# app.register_blueprint(bp_all_message, url_prefix='/all_message')
+# app.register_blueprint(bp_status, url_prefix='/status')
 
-db.create_all()
+# db.create_all()

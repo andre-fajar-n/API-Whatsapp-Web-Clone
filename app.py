@@ -19,7 +19,7 @@ if __name__ == "__main__":
     except Exception as e:
         # logging.getLogger().setLevel('INFO')
         formatter = logging.Formatter("[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s")
-        log_handler = RotatingFileHandler("%s/%s" % (app.root_path, '../storage/log/app.log'), maxBytes=100000, backupCount=10)
+        log_handler = RotatingFileHandler("%s/%s" % (app.root_path, './storage/log/app.log'), maxBytes=100000, backupCount=10)
         log_handler.setLevel(logging.INFO)
         log_handler.setFormatter(formatter)
         app.logger.addHandler(log_handler)

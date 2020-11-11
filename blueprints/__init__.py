@@ -116,4 +116,4 @@ app.register_blueprint(bp_member_group, url_prefix='/member_group')
 app.register_blueprint(bp_all_message, url_prefix='/all_message')
 app.register_blueprint(bp_status, url_prefix='/status')
 
-# db.create_all()
+db.create_all()

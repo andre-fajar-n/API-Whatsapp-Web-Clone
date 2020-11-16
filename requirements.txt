@@ -13,3 +13,5 @@ moment
 humanize
 gunicorn
 psycopg2
+python-dotenv
+cryptography

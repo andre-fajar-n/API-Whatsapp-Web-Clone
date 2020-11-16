@@ -32,12 +32,4 @@ class TestingConfig(Config):
     DEBUG = True
     MAX_BYTES = 100000
     APP_PORT = 6000
-    SQLALCHEMY_DATABASE_URI = '%s+%s://%s:%s@%s:%s/%s_testing' % (
-        cfg['database']['default_connection'],
-        cfg['mysql']['driver'],
-        cfg['mysql']['user'],
-        cfg['mysql']['password'],
-        cfg['mysql']['host'],
-        cfg['mysql']['port'],
-        cfg['mysql']['db']
-    )
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') + "_testing"

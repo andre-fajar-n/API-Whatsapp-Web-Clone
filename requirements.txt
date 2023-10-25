@@ -8,7 +8,7 @@ pymysql
 flask-jwt-extended
 requests
 pytest-cov
-werkzeug==2.2.3
+werkzeug==3.0.1
 moment
 humanize
 gunicorn
